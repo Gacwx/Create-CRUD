@@ -18,16 +18,12 @@ namespace ADO.NETconnection
 
                 // Create Table
                 string createTableCommandText = @"
-                    BEGIN
-                        EXECUTE IMMEDIATE 'CREATE TABLE Product (
-                            ID NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-                            ProductName NVARCHAR2(255),
-                            Quantity NUMBER,
-                            Price NUMBER(10,2))';
-                    EXCEPTION WHEN OTHERS THEN
-                        IF SQLCODE != -955 THEN RAISE; END IF;
-                    END;";
-
+                    CREATE TABLE Product (
+                        ID NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+                        ProductName NVARCHAR2(255),
+                        Quantity NUMBER,
+                        Price NUMBER(10,2)
+                    )";
                 using (OracleCommand command = new OracleCommand(createTableCommandText, connection))
                 {
                     command.ExecuteNonQuery();
